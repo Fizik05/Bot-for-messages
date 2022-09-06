@@ -1,6 +1,7 @@
 import os
 
 import dotenv
+
 from telegram import ReplyKeyboardMarkup
 from telegram.ext import (Updater,
                           Filters,
@@ -40,7 +41,9 @@ def get_id(update, context):
 
 
 def main():
-    updater.dispatcher.add_handler(CommandHandler("start",wake_up))
+    updater.dispatcher.add_handler(CommandHandler("start", wake_up))
+    updater.dispatcher.add_handler(Filters.text, get_id)
+
     updater.start_polling()
     updater.idle()
 
