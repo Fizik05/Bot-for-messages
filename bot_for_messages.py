@@ -8,6 +8,15 @@ from telegram.ext import (Updater,
 token = ""
 updater = Updater(token=token)
 
+
+def wake_up(update, context):
+    pass
+
+
+def get_id(update, context):
+    pass
+
+
 def main():
     pass
 
