@@ -13,6 +13,8 @@ dotenv.load_dotenv()
 
 token = os.getenv("TOKEN")
 updater = Updater(token=token)
+user_id = ""
+user_message = ""
 
 
 def wake_up(update, context):
@@ -36,8 +38,27 @@ def wake_up(update, context):
     )
 
 
+def get_message(message, id, context):
+    user_message = message
+
+    context.bot.send_message(
+        id,
+        text="Ваше сообщение отправлено"
+    )
+
+
 def get_id(update, context):
-    pass
+    message = update.message.text
+    id = update.effective_chat.id
+    if user_id == "":
+        user_id = message
+
+        context.bot.send_message(
+            id,
+            text="Напишите мне сообщение, которое я должен отправить"
+        )
+    else:
+        get_message(message, id, context)
 
 
 def main():
